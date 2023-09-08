@@ -1,4 +1,4 @@
-package com.stackroute.orderservice.order.model;
+package com.stackroute.orderservice.cart.model;
 
 import com.stackroute.orderservice.order.model.Products;
 import lombok.AllArgsConstructor;
@@ -9,27 +9,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "order")
-public class Order {
+@NoArgsConstructor
+@Document
+public class Cart {
 
     @Id
-    private String orderId;
+    private String cartId;
     private String email;
-    private String purchaseDate;
     private float totalPrice;
-    private String deliveryStatus;
-    private String expectedDelivery;
-
-    private List<Products> orderItems= new ArrayList<>();
-
-
-
-
+    private List<Product> cartItems = new ArrayList<>();
 
 
 }

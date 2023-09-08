@@ -1,57 +1,39 @@
 package com.stackroute.orderservice.order.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
+import com.stackroute.orderservice.cart.model.Cart;
 import com.stackroute.orderservice.order.model.Order;
+import com.stackroute.orderservice.order.model.Products;
+import com.stackroute.orderservice.order.repo.OrderRepository;
 import com.stackroute.orderservice.order.service.OrderService;
-import com.stackroute.orderservice.orderexception.OrderNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/ord")
+@RequestMapping("order")
 public class OrderController {
 
-	@Autowired
-	OrderService bs;
+    @Autowired
+    OrderService orderService;
 
-	@PostMapping("/order")
-	Order createOrder(@RequestBody Order order) {
-		return bs.save(order);
-	}
 
-	@GetMapping("/order/{id}")
-	Order getOrder(@PathVariable int id) {
-		Order ord = null;
-		try {
-			ord = bs.get(id);
-		} catch (OrderNotFoundException e) {
-			e.printStackTrace();
-		}
-		return ord;
-	}
+    @PostMapping("/saveOrder")
+    public ResponseEntity<Order> saveOrder(@RequestBody Order order){
+        Order saved = orderService.saveOrder(order);
+        return  new ResponseEntity<Order>(saved, HttpStatus.ACCEPTED);
+    }
 
-	@GetMapping("/order")
-	Iterable<Order> getAllOrder() {
-		return bs.getAll();
-	}
+    @GetMapping("/allOrder/{email}")
+    public ResponseEntity<List<Order>> allOrder(@PathVariable String email){
+        List<Order> orderList = orderService.getOrder(email);
+        return  new ResponseEntity<List<Order>>(orderList,HttpStatus.OK);
+    }
 
-	@DeleteMapping("/order/{id}")
-	void delOrder(@PathVariable int id) {
-		bs.delete(id);
-	}
+    
 
-	@PutMapping("/order/{id}")
-	Order updateOrder(@PathVariable int id, @RequestBody Order order) {
-		Order newOrder = bs.updateOrder(id, order);
-		return bs.save(newOrder);
-	}
 
-	@GetMapping("/orders/{name}")
-	Iterable<Order> getByUserid(@PathVariable int name) {
-		return bs.getByUserId(name);
-	}
 }

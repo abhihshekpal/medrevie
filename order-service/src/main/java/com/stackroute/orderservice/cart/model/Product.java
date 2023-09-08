@@ -1,4 +1,4 @@
-package com.stackroute.orderservice.order.model;
+package com.stackroute.orderservice.cart.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Products {
+public class Product {
 
     @Id
     private String productId;
