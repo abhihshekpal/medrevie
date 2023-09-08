@@ -33,14 +33,11 @@ public class MyCartService implements IMyCartService {
 	}
 
 	@Override
-	public MyCart updateMyCart(int id, MyCart mycart) {
-		MyCart newMyCart = br.findById(id).get();
-		newMyCart.setid(mycart.getid());
-		newMyCart.setProductName(mycart.getProductName());
-		newMyCart.setProductId(mycart.getProductId());
-		newMyCart.setQuantity(mycart.getQuantity());
-		newMyCart.setPaymentAmount(mycart.getPaymentAmount());
-		newMyCart.setPaymentMethod(mycart.getPaymentMethod());
+	public MyCart updateMyCart(int cartId, MyCart mycart) {
+		MyCart newMyCart = br.findById(cartId).get();
+		newMyCart.setCartId(mycart.getCartId());
+		newMyCart.setEmail(mycart.getEmail());
+		newMyCart.setTotalPrice(mycart.getTotalPrice());
 		return br.save(newMyCart);
 	}
 
