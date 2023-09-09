@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 public interface CartService {
 //   public Cart saveCart(Cart cart);
 
-	Cart addProduct(Product product, String email);
+    Cart addProduct(Product product, String email);
 
-	Cart deleteProduct(Product product, String email);
+    Cart deleteProduct(Product product, String email);
 
-	Cart increaseQuantity(String productId, String email);
+    Cart increaseQuantity(String productId, String email);
 
-	Cart decreaseQuantity(String productId, String email);
+ Cart decreaseQuantity(String productId, String email);
 
-	Cart getCart(String email);
+ Cart getCart(String email);
 
-	String deleteCart(String email);
+    Cart setTotalPrice(Cart cart);
 
-	Cart setTotalPrice(Cart cart);
+    String deleteCart(String email);
 }

@@ -1,6 +1,5 @@
 package com.stackroute.orderservice.cart.service;
 
-import com.stackroute.orderservice.cart.exception.CartAlreadyExists;
 import com.stackroute.orderservice.cart.exception.CartDoesnotExist;
 import com.stackroute.orderservice.cart.exception.NoProductsHere;
 import com.stackroute.orderservice.cart.model.Cart;
@@ -46,8 +45,12 @@ public class CartServiceImpl implements CartService {
             Cart cart = cartRepository.findByEmail(email);
             List<Product> cartItems = cart.getCartItems();
             if (cartItems.size()==0){
-            	//cart.getCartItems().add(product);
-            return cart;
+
+                List<Product> prods=new ArrayList<>();
+                prods.addAll(cart.getCartItems());
+                prods.add(product);
+                cart.setCartItems(prods);
+                return cartRepository.save(cart);
 
             }
             else{
@@ -82,14 +85,19 @@ public class CartServiceImpl implements CartService {
     public Cart deleteProduct(Product product, String email) {
         Cart cart = cartRepository.findByEmail(email);
         List<Product> cartItems = cart.getCartItems();
+        boolean productFound = false;
+
+
         for (Product p : cartItems) {
             System.out.println(p);
             if (p.getProductId().equals(product.getProductId())) {
                 cart.getCartItems().remove(p);
+                productFound = true;
                 break;
             }
-//            else
-//                throw  new NoProductsHere("product doesnot exist in cart");
+        }
+        if (!productFound) {
+            throw new NoProductsHere("Product not found in the cart.");
         }
         return cartRepository.save(cart);
     }
@@ -98,14 +106,18 @@ public class CartServiceImpl implements CartService {
     public Cart increaseQuantity(String productId, String email){
         Cart cart = cartRepository.findByEmail(email);
         List<Product> cartItems = cart.getCartItems();
+        boolean productFound = false;
+
         for (Product p : cartItems) {
             System.out.println(p);
             if (p.getProductId().equals(productId)) {
                 p.setQuantity(p.getQuantity()+1);
+                productFound=true;
                 break;
             }
-//            else
-//                throw  new NoProductsHere("product doesnot exist in cart");
+        }
+        if (!productFound) {
+            throw new NoProductsHere("Product not found in the cart.");
         }
         return cartRepository.save(cart);
     }
@@ -114,14 +126,19 @@ public class CartServiceImpl implements CartService {
     public Cart decreaseQuantity(String productId, String email){
         Cart cart = cartRepository.findByEmail(email);
         List<Product> cartItems = cart.getCartItems();
+        boolean productFound = false;
+
+
         for (Product p : cartItems) {
             System.out.println(p);
             if (p.getProductId().equals(productId)) {
                 p.setQuantity(p.getQuantity()-1);
+                productFound=true;
                 break;
             }
-//            else
-//                throw  new NoProductsHere("product doesnot exist in cart");
+        }
+        if (!productFound) {
+            throw new NoProductsHere("Product not found in the cart.");
         }
         return cartRepository.save(cart);
     }
@@ -136,17 +153,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public String deleteCart(String email){
-        Cart cart = cartRepository.findByEmail(email);
-        if (cart==null){
-            throw new CartDoesnotExist("Cart Doesnot exist");
-        }
-        cartRepository.delete(cart);
-        return "Cart deleted";
-    }
-
-
-    @Override
     public Cart setTotalPrice(Cart cart){
 
         if (!cartRepository.existsByEmail(cart.getEmail())){
@@ -157,6 +163,20 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(update);
 
     }
+
+    @Override
+    public String deleteCart(String email){
+        Cart cart = cartRepository.findByEmail(email);
+        if (cart==null){
+            throw new CartDoesnotExist("Cart Doesnot exist");
+        }
+        cartRepository.delete(cart);
+        return "Cart deleted";
+    }
+
+
+
+
 
 
 }

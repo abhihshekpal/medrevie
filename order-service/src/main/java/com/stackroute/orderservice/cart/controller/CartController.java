@@ -31,13 +31,8 @@ public class CartController {
     public ResponseEntity<Cart> addProduct(@RequestBody Product product, @PathVariable String email){
         Cart cart = cartService.addProduct(product,email);
         return new ResponseEntity<Cart>(cart,HttpStatus.ACCEPTED);
+
     }
-        @PutMapping("setPrice")
-        public ResponseEntity<Cart> updateCart(@RequestBody Cart cart){
-            Cart updatedCart = cartService.setTotalPrice(cart);
-            return new ResponseEntity<Cart>(updatedCart,HttpStatus.ACCEPTED);
-        }
-    
 
     @PutMapping("increaseQuantity/{productId}/{email}")
     public ResponseEntity<Cart> increaseQuantity(@PathVariable String productId, @PathVariable String email){
@@ -61,6 +56,12 @@ public class CartController {
     public ResponseEntity<Cart> deleteProduct(@RequestBody Product product, @PathVariable String email){
         Cart save = cartService.deleteProduct(product, email);
         return new ResponseEntity<Cart>(save,HttpStatus.OK);
+    }
+
+    @PutMapping("setPrice")
+    public ResponseEntity<Cart> updateCart(@RequestBody Cart cart){
+        Cart updatedCart = cartService.setTotalPrice(cart);
+        return new ResponseEntity<Cart>(updatedCart,HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/deleteCart/{email}")
