@@ -16,7 +16,7 @@ import java.util.List;
 public class Cart {
 
     @Id
-    private String cartId;
+    private String cartId ;
     private String email;
     private float totalPrice;
     private List<Product> cartItems = new ArrayList<>();

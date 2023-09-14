@@ -4,10 +4,12 @@ import com.stackroute.orderservice.order.exception.OrderAlreadyExists;
 import com.stackroute.orderservice.order.exception.OrderDoesnotExist;
 import com.stackroute.orderservice.order.model.Order;
 import com.stackroute.orderservice.order.repo.OrderRepository;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OrderServiceImpl implements OrderService {

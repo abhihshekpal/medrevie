@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Data
@@ -18,7 +19,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    private String orderId;
+    private String orderId = "medi" + UUID.randomUUID().toString();
     private String email;
     private String purchaseDate;
     private float totalPrice;

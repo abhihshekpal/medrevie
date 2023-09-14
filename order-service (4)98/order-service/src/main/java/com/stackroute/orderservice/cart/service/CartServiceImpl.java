@@ -132,9 +132,13 @@ public class CartServiceImpl implements CartService {
         for (Product p : cartItems) {
             System.out.println(p);
             if (p.getProductId().equals(productId)) {
-                p.setQuantity(p.getQuantity()-1);
-                productFound=true;
-                break;
+                if(p.getQuantity()==1){
+                    deleteProduct(p,email);
+                }else {
+                    p.setQuantity(p.getQuantity() - 1);
+                    productFound = true;
+                    break;
+                }
             }
         }
         if (!productFound) {
