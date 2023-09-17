@@ -1,0 +1,196 @@
+<!-- ordersum.component.html -->
+<div class="toolbar">
+  <!-- Empty space on the left -->
+  <div class="spacer"></div>
+
+  <!-- Search bar in the middle -->
+  <div class="search-bar">
+    <!-- <input type="text" placeholder="Search...">
+    <button>Search</button> -->
+    <mat-form-field>
+      <input matInput type="text" placeholder="Search...">
+      <button mat-button>Search</button>
+    </mat-form-field>
+  </div>
+
+
+</div>
+<div class="abc">
+  <p><b>Order Summary</b></p>
+</div>
+
+<div style="background-color: #FFF2F2;" class="an">
+<div class="sidebyside">
+<!-- ui-bar.component.html -->
+
+<div class="ui-bar">
+  <!-- Left side: Products content and image -->
+<div class="box1">
+  <div class="left-side">
+    <div class="products-content">
+      <!-- Add your products content here -->
+      <p>Products</p>
+    </div>
+    <div class="image">
+      <img src="assets\Kapiva-Get-Slim-Juice.1.jpg" alt="Image">
+    </div>
+  </div>
+
+  <!-- Middle content -->
+  <div class="middle-content">
+    <!-- Add your middle content here -->
+    <p><b>Kapika Get Slim Juice 1 Litre</b></p>
+    <p>Mfr.Adret Retail Pvt Ltd</p>
+    <p>price is 1043.10</p>
+    <P> you will get flat 2% discount for the product</P>
+    <p></p>
+  </div>
+</div>
+
+  <!-- Right side: Delete button and content options -->
+  <div class="right-side">
+    <!-- <button class="delete-button"><img src="https://www.google.com/search?q=icon+deleted+logo&tbm=isch&bih=707&biw=1536&rlz=1C1RXQR_enIN991IN991&hl=en&sa=X&ved=2ahUKEwiWuuD256aBAxXzpekKHUIZAmwQrNwCKAB6BQgBEIwB" alt="Google Logo" width="1cm" height="1cm"> -->
+    <!-- </button> -->
+    <div class="content-options">
+      <!-- Add your content options here -->
+      <!-- HTML -->
+    <div class="quantity-control">
+
+
+
+    <!-- <input type="number" class="quantity-input" value="1"> -->
+
+    <!-- <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" value="1" min="1"> -->
+    <!-- <br>
+    <label for="price">Price:</label>
+    <span id="price">$10.00</span> -->
+
+    <div>
+      <label style="inline-size: 5px;" for="quantity">Quantity:</label>
+      <input type="number" id="quantity" [(ngModel)]="quantity" (ngModelChange)="updatePrice()">
+    </div>
+    <!-- <div>
+      <label for="price">Price:</label>
+      <span id="price">{{ totalPrice | currency }}</span>
+    </div> -->
+
+
+
+  </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- <div class="promo-code">
+    <h2 class="promo-title">Promo Code</h2>
+    <div class="choose-option">
+      <label for="promo-options">Choose Option:</label>
+      <select id="promo-options">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+      <button class="apply-button">Apply Promo Code</button>
+    </div>
+    <p class="discount-content">Get flat discount! Vouchers applicable in payment options.</p>
+  </div> -->
+</div>
+
+<div class="promo-code">
+  <h2 class="promo-title">Promo Code</h2>
+  <!-- <div class="choose-option">
+    <label for="promo-options">Choose Option:</label>
+    <select id="promo-options">
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
+    <button class="apply-button">Apply Promo Code</button>
+  </div> -->
+  <mat-form-field>
+    <mat-label for="promo-options">Choose Option:</mat-label>
+    <mat-select id="promo-options" [(ngModel)]="selectedPromoCode" (ngModelChange)="updatePrice()">
+      <!-- <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option> -->
+      <mat-option *ngFor="let promoOption of getObjectKeys(promoCodeDiscounts)" [value]="promoOption">
+        {{ promoOption }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button class="apply-button">Apply Promo Code</button>
+  <p class="discount-content">Get flat discount! Vouchers applicable in payment options.</p>
+</div>
+<!-- Promo Code -->
+<!-- <div class="promo-code">
+  <h2 class="promo-title">Promo Code</h2>
+  <mat-form-field>
+    <mat-label for="promo-options">Choose Option:</mat-label>
+    <mat-select id="promo-options" [(ngModel)]="selectedPromoCode" (ngModelChange)="updatePrice()">
+      <mat-option *ngFor="let option of Object.keys(promoCodeDiscounts)" [value]="option">{{ option }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button class="apply-button">Apply Promo Code</button>
+  <p class="discount-content">Get flat discount! Vouchers applicable in payment options.</p>
+  <p class="selected-promo-code">Selected Promo Code: {{ selectedPromoCode }}</p>
+</div> -->
+
+
+
+
+</div>
+
+<div class="sidebyside2">
+<!-- HTML -->
+<div class="product-container">
+  <p class="top-text">MedRevive FIRST customers get extra ₹20.86 cashback on this order</p>
+  <div class="product-details">
+    <div class="product-image">
+      <img src="http://localhost:4200/assets/Kapiva-Get-Slim-Juice.1.jpg" alt="Product Image">
+    </div>
+    <div class="product-content">
+      <!-- Add your product content here -->
+      <h2><b>Superfast Delivery</b></h2>
+      <p>High Priority Delivery For all orders</p>
+
+    </div>
+    <div class="add-to-cart">
+      <button>Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="payment-container">
+  <!-- Payment Details -->
+<div class="payment-details">
+  <p>MRP Total <span class="price">
+    <div>
+      <label for="totalAmount">Total Amount:</label>
+      <span id="totalAmount">{{ formatAsRupees(totalAmountWithoutDiscount) }}</span>
+    </div>
+  </span></p>
+  <p>Shipping/Delivery Charges <span class="price">₹ 0.00</span></p>
+  <p>Total Payable <span class="price">
+    <div>
+      <label for="discountedAmount">Discounted Amount:</label>
+      <span id="discountedAmount">{{ formatAsRupees(discountedAmount) }}</span>
+    </div>
+  </span></p>
+</div>
+<p><span class="savings"><div>
+  <label for="totalSavings">Total Savings:</label>
+  <span id="totalSavings">{{ formatAsRupees(totalSavings) }}</span>
+</div></span></p>
+
+  <!-- </div></span></p> -->
+  <button class="proceed-button">Proceed</button>
+</div>
+</div>
+</div>
+

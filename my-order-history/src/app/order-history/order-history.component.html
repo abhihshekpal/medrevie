@@ -1,0 +1,77 @@
+<h1 style="background-color: #7286D3;" class="display-1">Order History</h1>
+<div style="background-color: #E5E0FF;"class="container">
+    <!-- Order List (Left Half) -->
+    <div class="order-list">
+      <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <!-- Order ID Column -->
+        <ng-container matColumnDef="orderId">
+          <mat-header-cell class="mat-header-cell" *matHeaderCellDef mat-sort-header> Order ID </mat-header-cell>
+          <mat-cell *matCellDef="let order"> {{ order.orderId }} </mat-cell>
+        </ng-container>
+  
+        <!-- Purchase Date Column -->
+        <ng-container matColumnDef="purchaseDate">
+          <mat-header-cell class="mat-header-cell" *matHeaderCellDef mat-sort-header> Purchase Date </mat-header-cell>
+          <mat-cell *matCellDef="let order"> {{ order.purchaseDate  }} </mat-cell>
+        </ng-container>
+  
+        <!-- Total Price Column -->
+        <ng-container matColumnDef="totalPrice">
+          <mat-header-cell class="mat-header-cell" *matHeaderCellDef mat-sort-header> Total Price </mat-header-cell>
+          <mat-cell *matCellDef="let order"> ₹{{ order.totalPrice }} </mat-cell>
+        </ng-container>
+  
+        <!-- Delivery Status Column -->
+        <ng-container matColumnDef="deliveryStatus">
+          <mat-header-cell class="mat-header-cell" *matHeaderCellDef mat-sort-header> Delivery Status </mat-header-cell>
+          <mat-cell *matCellDef="let order"> {{ order.deliveryStatus }} </mat-cell>
+        </ng-container>
+  
+        <mat-header-row class="mat-header-row" *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row class="mat-row" *matRowDef="let row; columns: displayedColumns" (click)="expandOrder(row)"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [length]="100" [pageSizeOptions]="[5,10,15]" aria-label="select page" showFirstLastButtons>
+        
+      </mat-paginator>
+      </div>
+  
+    <div class="product-details" *ngIf="selectedOrder">
+      <mat-expansion-panel *ngIf="selectedOrder" class="order-expansion-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-panel-title">
+            Order Details - Order ID: {{ selectedOrder.orderId }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <h2 class="products">Products</h2>
+  <div class="row">
+    <div class="col-md-4  with-padding" *ngFor="let item of products | paginate:{itemsPerPage:tableSize, currentPage:page, totalItems:count} let i=index">
+      <mat-card class="product-item ">
+        <div class="product-image-container">
+          <img mat-card-image [src]="item.image" alt="">
+        </div>
+        <mat-card-content class="mat-card-content">
+          <h6 class="name-head">{{ item.name }}</h6>
+          <div class="product-price">
+            <h6>Price: ₹{{ item.price }}</h6>
+            <h6>Quantity: {{ item.quantity }}</h6>
+          </div>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="addToCart(item)">Add To Cart</button>
+        </mat-card-actions> -->
+      </mat-card>
+
+    </div>
+  </div>
+  <!-- <mat-paginator #productPaginator [length]="100" [pageSizeOptions]="[6]" aria-label="select page" showFirstLastButtons>
+
+  </mat-paginator> -->
+  <div class="pagination">
+  <pagination-controls previousLabel="Prev"  nextLabel="Next"  (pageChange)="onTableDataChange($event)" >
+
+  </pagination-controls>
+  </div>
+      </mat-expansion-panel>
+      
+    </div>
+  </div>

@@ -1,0 +1,190 @@
+/* order-history.component.css */
+/* order-history.component.css */
+
+.mat-header-row{
+  background-color:  #E5E0FF;
+  
+}
+.mat-header-cell{
+  background-color: #8EA7E9;
+}
+.mat-card-content{
+  background-color:  #E5E0FF;
+}
+.product-image {
+  flex: 0 0 50%; /* Adjust the width of the image column as needed */
+  padding: 1px; /* Add padding to create spacing between the image and details */
+}
+
+.product-details {
+  flex: 0 0 50%; /* Adjust the width of the details column as needed */
+  padding: 1px; /* Add padding to create spacing between the image and details */
+}
+.product-card{
+  display: flex;
+justify-content: space-between;
+  
+  margin-bottom: 16px; /* Adjust the margin value as needed */
+    
+  background-color: #E5E0FF;
+}
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.order-list {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  
+   /* Add a border to separate the halves */
+}
+
+.product-details {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* Rest of the styles (same as before) */
+
+.table-container {
+  margin: 16px;
+}
+
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+.order-expansion-panel {
+  width: 90%;
+  margin: 16px;
+  background-color: #8EA7E9;
+}
+
+.order-details {
+  background-color: #E5E0FF;
+  padding: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #8EA7E9;
+  color: white;
+}
+
+tr:hover {
+  background-color: #E5E0FF;
+  cursor: pointer;
+}
+
+
+
+
+/* Trendy Products Section */
+h2 {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+/* Trendy Products Container */
+.trendy-products {
+  display: flex;
+  flex-wrap: wrap; /* Wrap items to a new line when needed */
+  margin: -5px; /* Adjust margin to create spacing between items */
+}
+
+/* Product Item */
+.product-item:hover {
+  transform: scale(1.02);
+}
+
+.product-item img {
+  width: 75%;
+  max-height: 150px; /* Reduce the maximum image height for smaller images */
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.product-details {
+  padding: 10px;
+}
+
+.name-head {
+  font-size: 18px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.product-price h6 {
+  font-size: 16px;
+  margin: 5px 0;
+  max-width: 100%;
+}
+
+
+.row {
+  display: flex;
+  flex-direction: row; /* Make the content appear in a horizontal line */
+  align-items: flex-start; /* Align items to the top within the row */
+  justify-content: space-between; /* Add space between the carousel and product details */
+}
+
+.col-sm-4 {
+  flex: 2; /* Allow both columns to grow and fill available space equally */
+}
+
+.mat-row:hover {
+  background-color: #8EA7E9;
+}
+
+.product-image-container {
+  padding: 16px; /* Adjust the padding as needed */
+  text-align: center; /* Center-align the content */
+}
+
+/* You can add additional styles for the product image if necessary */
+.product-image-container img {
+  max-width: 100%; /* Ensure the image doesn't exceed the container width */
+}
+
+.with-padding {
+  padding-bottom: 16px; /* Adjust the padding as needed */
+}
+
+.mat-card-content{
+  max-width: 100%;
+  text-align: center;
+}
+
+.pagination{
+  float: right;
+}
+
+.pagination::ng-deep .ngx-pagination .current{
+  background: #8EA7E9;
+  color: black;
+}
+
+.mat-panel-title{
+  color: #E5E0FF;
+}
+
+.products{
+  color:#8EA7E9
+}
